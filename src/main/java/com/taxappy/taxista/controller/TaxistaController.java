@@ -1,4 +1,4 @@
-package com.taxapy.taxistaservice.controller;
+package com.taxappy.taxista.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,13 +16,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.taxapy.taxistaservice.model.Notification;
-import com.taxapy.taxistaservice.model.Taxista;
-import com.taxapy.taxistaservice.model.UsoTaxi;
-import com.taxapy.taxistaservice.repository.TaxistaRepository;
-import com.taxapy.taxistaservice.repository.UsoTaxiRepository;
-import com.taxapy.taxistaservice.stream.NotificationDeleteStream;
-import com.taxapy.taxistaservice.stream.NotificationSaveStream;
+import com.taxappy.taxista.model.Notification;
+import com.taxappy.taxista.model.Taxista;
+import com.taxappy.taxista.model.UsoTaxi;
+import com.taxappy.taxista.stream.NotificationDeleteStream;
+import com.taxappy.taxista.stream.NotificationSaveStream;
+import com.taxappy.taxista.repository.TaxistaRepository;
+import com.taxappy.taxista.repository.UsoTaxiRepository;
+
+
 
 @RestController
 @RequestMapping("/")

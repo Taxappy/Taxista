@@ -1,16 +1,17 @@
-package com.taxapy.taxistaservice.stream;
+package com.taxappy.taxista.stream;
 
 import org.springframework.cloud.stream.annotation.Input;
 import org.springframework.cloud.stream.annotation.Output;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.SubscribableChannel;
 
-public interface NotificationSaveStream {
-	String INPUT = "notification-in";
-	String OUTPUT = "notification-out";
+public interface NotificationDeleteStream {
+	String INPUT = "notificationD-in";
+	String OUTPUT = "notificationD-out";
 
 	@Input(INPUT)
 	SubscribableChannel subscribe();
+	
 	@Output(OUTPUT)
 	MessageChannel notifyTo();
 

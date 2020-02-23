@@ -1,9 +1,9 @@
-package com.taxapy.taxistaservice.repository;
+package com.taxappy.taxista.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.taxapy.taxistaservice.model.UsoTaxi;
+import com.taxappy.taxista.model.UsoTaxi;
 
 @Repository
 public interface UsoTaxiRepository extends CrudRepository<UsoTaxi, Integer> {

@@ -1,4 +1,4 @@
-package com.taxapy.taxistaservice.model;
+package com.taxappy.taxista.model;
 
 import java.io.Serializable;
 

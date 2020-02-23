@@ -1,8 +1,9 @@
-package com.taxapy.taxistaservice.repository;
+package com.taxappy.taxista.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.taxapy.taxistaservice.model.Taxista;
+import com.taxappy.taxista.model.Taxista;
+
 
 public interface TaxistaRepository extends CrudRepository<Taxista, Integer> {
 	Iterable<Taxista> findTaxistaByNombre(String nombre);

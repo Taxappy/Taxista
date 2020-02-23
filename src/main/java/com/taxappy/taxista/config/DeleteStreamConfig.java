@@ -1,8 +1,8 @@
-package com.taxapy.taxistaservice.config;
+package com.taxappy.taxista.config;
 
 import org.springframework.cloud.stream.annotation.EnableBinding;
 
-import com.taxapy.taxistaservice.stream.NotificationDeleteStream;
+import com.taxappy.taxista.stream.NotificationDeleteStream;
 
 
 @EnableBinding(NotificationDeleteStream.class)
