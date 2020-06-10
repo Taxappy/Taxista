@@ -45,18 +45,18 @@ public class TaxistaController {
 	}
 
 	@PostMapping("/")
-	public Taxista save(@RequestBody Taxista taxista) {
+	public Taxista saveTaxista(@RequestBody Taxista taxista) {
 		return taxistaRepository.save(taxista);
 
 	}
 
 	@DeleteMapping("/{idTaxista}")
-	public void delete(@PathVariable final Integer idTaxista) {
+	public void deleteTaxista(@PathVariable final int idTaxista) {
 		taxistaRepository.deleteById(idTaxista);
 	}
 
 	@PatchMapping("/")
-	public Taxista update(@RequestBody Taxista taxista) {
+	public Taxista updateTaxista(@RequestBody Taxista taxista) {
 		return taxistaRepository.save(taxista);
 	}
 
@@ -66,12 +66,12 @@ public class TaxistaController {
 	}
 
 	@PostMapping("/usotaxi")
-	public UsoTaxi save(@RequestBody UsoTaxi usoTaxi) {
+	public UsoTaxi saveUsoTaxi(@RequestBody UsoTaxi usoTaxi) {
 		return usoTaxiRepository.save(usoTaxi);
 	}
 
 	@PatchMapping("/usotaxi")
-	public UsoTaxi update(@RequestBody UsoTaxi usoTaxi) {
+	public UsoTaxi updateUsoTaxi(@RequestBody UsoTaxi usoTaxi) {
 		return usoTaxiRepository.save(usoTaxi);
 	}
 
@@ -91,7 +91,7 @@ public class TaxistaController {
 	}
 
 	@DeleteMapping("/usotaxi/{codigo}")
-	public void delete(@PathVariable int codigo) {
+	public void deleteUsoTaxi(@PathVariable int codigo) {
 		usoTaxiRepository.deleteById(codigo);
 	}
 
