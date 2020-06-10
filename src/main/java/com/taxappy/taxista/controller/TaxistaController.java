@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.taxappy.taxista.model.Notification;
@@ -35,30 +34,65 @@ public class TaxistaController {
 	private UsoTaxiRepository usoTaxiRepository;
 	private List<Notification> notificaciones = new ArrayList<>();
 
-	@GetMapping("/taxista")
+	@GetMapping("/")
 	public Iterable<Taxista> allTaxista() {
 		return taxistaRepository.findAll();
 	}
 
-	@GetMapping("/taxista/{id}")
+	@GetMapping("/{idTaxista}")
 	public Taxista findByidTaxista(@PathVariable final int idTaxista) {
 		return taxistaRepository.findTaxistaByIdTaxista(idTaxista);
 	}
 
-	@PostMapping("/taxista")
+	@PostMapping("/")
 	public Taxista save(@RequestBody Taxista taxista) {
 		return taxistaRepository.save(taxista);
 
 	}
 
-	@DeleteMapping("/taxista")
-	public void delete(@RequestBody Taxista taxista) {
-		taxistaRepository.delete(taxista);
+	@DeleteMapping("/{idTaxista}")
+	public void delete(@PathVariable final Integer idTaxista) {
+		taxistaRepository.deleteById(idTaxista);
 	}
 
-	@PatchMapping("/taxista")
+	@PatchMapping("/")
 	public Taxista update(@RequestBody Taxista taxista) {
 		return taxistaRepository.save(taxista);
+	}
+
+	@GetMapping("/notificacion")
+	public List<Notification> getNotificacion() {
+		return notificaciones;
+	}
+
+	@PostMapping("/usotaxi")
+	public UsoTaxi save(@RequestBody UsoTaxi usoTaxi) {
+		return usoTaxiRepository.save(usoTaxi);
+	}
+
+	@PatchMapping("/usotaxi")
+	public UsoTaxi update(@RequestBody UsoTaxi usoTaxi) {
+		return usoTaxiRepository.save(usoTaxi);
+	}
+
+	@GetMapping("/usotaxi")
+	public Iterable<UsoTaxi> allUsoTaxi() {
+		return usoTaxiRepository.findAll();
+	}
+
+	@GetMapping("/usotaxi/{idTaxista}/placa/{placa}")
+	public UsoTaxi findByIdTaxistaAndPlaca(@PathVariable int idTaxista, @PathVariable String placa) {
+		return usoTaxiRepository.findUsoTaxiByIdTaxistaAndPlaca(idTaxista, placa);
+	}
+
+	@GetMapping("/usotaxi/{idTaxista}/fecha/{fechaUso}")
+	public UsoTaxi findByIdTaxistaAndFechaUso(@PathVariable int idTaxista,@PathVariable String fechaUso) {
+		return usoTaxiRepository.findUsoTaxiByIdTaxistaAndFechaUso(idTaxista, fechaUso);
+	}
+
+	@DeleteMapping("/usotaxi/{codigo}")
+	public void delete(@PathVariable int codigo) {
+		usoTaxiRepository.deleteById(codigo);
 	}
 
 	@StreamListener(NotificationSaveStream.INPUT)
@@ -70,41 +104,6 @@ public class TaxistaController {
 	public void deleteNotification(@Payload Notification notificacion) {
 		notificaciones.remove(notificacion);
 
-	}
-
-	@GetMapping("/taxista/notificacion")
-	public List<Notification> getNotificacion() {
-		return notificaciones;
-	}
-
-	@PostMapping("/taxista/usotaxi")
-	public UsoTaxi save(@RequestBody UsoTaxi usoTaxi) {
-		return usoTaxiRepository.save(usoTaxi);
-	}
-
-	@PatchMapping("/taxista/usotaxi")
-	public UsoTaxi update(@RequestBody UsoTaxi usoTaxi) {
-		return usoTaxiRepository.save(usoTaxi);
-	}
-
-	@GetMapping("/taxista/usotaxi")
-	public Iterable<UsoTaxi> allUsoTaxi() {
-		return usoTaxiRepository.findAll();
-	}
-
-	@GetMapping("/taxista/usotaxi/{idTaxista}")
-	public UsoTaxi findByIdTaxistaAndPlaca(@PathVariable int idTaxista, @RequestParam String placa) {
-		return usoTaxiRepository.findUsoTaxiByIdTaxistaAndPlaca(idTaxista, placa);
-	}
-
-	@GetMapping("/taxista/usotaxi/{fechaUso}")
-	public UsoTaxi findByIdTaxistaAndFechaUso(@RequestParam int idTaxista,@PathVariable String fechaUso) {
-		return usoTaxiRepository.findUsoTaxiByIdTaxistaAndFechaUso(idTaxista, fechaUso);
-	}
-
-	@DeleteMapping("/taxista/usotaxi")
-	public void delete(@RequestBody UsoTaxi usotaxi) {
-		usoTaxiRepository.delete(usotaxi);
 	}
 
 }
