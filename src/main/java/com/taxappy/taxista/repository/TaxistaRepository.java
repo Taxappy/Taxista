@@ -8,4 +8,5 @@ import com.taxappy.taxista.model.Taxista;
 public interface TaxistaRepository extends CrudRepository<Taxista, Integer> {
 	Iterable<Taxista> findTaxistaByNombre(String nombre);
 	Taxista findTaxistaByIdTaxista(int idTaxista);
+	Iterable<Taxista> findTaxistaByDisponible(boolean disponible);
 }

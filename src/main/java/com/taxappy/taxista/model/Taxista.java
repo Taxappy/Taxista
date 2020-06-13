@@ -14,6 +14,6 @@ import lombok.NoArgsConstructor;
 public class Taxista {
 	@Id
 	private int idTaxista;
-
 	private String nombre;
+	private boolean disponible;
 }

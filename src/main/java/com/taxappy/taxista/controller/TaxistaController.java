@@ -1,11 +1,8 @@
 package com.taxappy.taxista.controller;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.stream.annotation.StreamListener;
-import org.springframework.messaging.handler.annotation.Payload;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -15,11 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.taxappy.taxista.model.Notification;
 import com.taxappy.taxista.model.Taxista;
 import com.taxappy.taxista.model.UsoTaxi;
-import com.taxappy.taxista.stream.NotificationDeleteStream;
-import com.taxappy.taxista.stream.NotificationSaveStream;
 import com.taxappy.taxista.repository.TaxistaRepository;
 import com.taxappy.taxista.repository.UsoTaxiRepository;
 
@@ -32,7 +26,6 @@ public class TaxistaController {
 	private TaxistaRepository taxistaRepository;
 	@Autowired
 	private UsoTaxiRepository usoTaxiRepository;
-	private List<Notification> notificaciones = new ArrayList<>();
 
 	@GetMapping("/")
 	public Iterable<Taxista> allTaxista() {
@@ -42,6 +35,11 @@ public class TaxistaController {
 	@GetMapping("/{idTaxista}")
 	public Taxista findByidTaxista(@PathVariable final int idTaxista) {
 		return taxistaRepository.findTaxistaByIdTaxista(idTaxista);
+	}
+
+	@GetMapping("/disponible")
+	public Iterable<Taxista> findDisponible() {
+		return taxistaRepository.findTaxistaByDisponible(true);
 	}
 
 	@PostMapping("/")
@@ -58,11 +56,6 @@ public class TaxistaController {
 	@PatchMapping("/")
 	public Taxista updateTaxista(@RequestBody Taxista taxista) {
 		return taxistaRepository.save(taxista);
-	}
-
-	@GetMapping("/notificacion")
-	public List<Notification> getNotificacion() {
-		return notificaciones;
 	}
 
 	@PostMapping("/usotaxi")
@@ -93,17 +86,6 @@ public class TaxistaController {
 	@DeleteMapping("/usotaxi/{codigo}")
 	public void deleteUsoTaxi(@PathVariable int codigo) {
 		usoTaxiRepository.deleteById(codigo);
-	}
-
-	@StreamListener(NotificationSaveStream.INPUT)
-	public void saveNotification(@Payload Notification notificacion) {
-		notificaciones.add(notificacion);
-	}
-
-	@StreamListener(NotificationDeleteStream.INPUT)
-	public void deleteNotification(@Payload Notification notificacion) {
-		notificaciones.remove(notificacion);
-
 	}
 
 }
