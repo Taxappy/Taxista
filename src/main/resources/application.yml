@@ -7,25 +7,6 @@ server:
 spring:
   application:
     name: taxapy-taxista-server
-  cloud:
-    stream:
-      kafka:
-        binder:
-          brokers:
-          - localhost:9092
-      bindings:
-          notification-in:
-            destination: SaveNotification
-            contentType: application/json
-          notification-out:
-            destination: SaveNotification
-            contentType: application/json
-          notificationD-in:
-            destination: DeleteNotification
-            contentType: application/json
-          notificationD-out:
-            destination: DeleteNotification
-            contentType: application/json
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     password: integrador
